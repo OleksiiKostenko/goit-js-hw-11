@@ -1,15 +1,14 @@
-function createMarkupImageList(images) {
-  return images.map(image => {
-    const {
+function createMarkupImageList({
       webformatURL,
       largeImageURL,
       tags,
       likes,
       views,
       comments,
-      downloads,
-    } = image;
-    const imageList = `<div class="photo-card">
+      downloads
+    }) {
+  return `<div class="photo-card">
+   <a href="${largeImageURL}"><img src="images/thumbs/thumb1.jpg" alt="" title=""/></a>
   <img src="${webformatURL}" alt="${tags}" loading="lazy" />
   <div class="info">
     <p class="info-item">
@@ -26,8 +25,11 @@ function createMarkupImageList(images) {
     </p>
   </div>
 </div>`;
-    return imageEl.insertAdjacentHTML('beforeend', imageList);
-  });
+};
+
+function updateGalleryList(markup) {
+  document.querySelector('.gallery').innerHTML = markup;
 }
 
-export { createMarkupImageList };
+
+export { createMarkupImageList , updateGalleryList };
