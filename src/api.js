@@ -7,7 +7,7 @@ export default class ImageApi {
     this.ENDPOINT = 'https://pixabay.com/api/';
     this.KEY_VALUE = '33445990-2dd1c7e9397bdf317f172af9d';
     this.URL_OPTIONS =
-      'image_type=photo&orientation=horizontal&safesearch=true&per_page=5';
+      'image_type=photo&orientation=horizontal&safesearch=true&per_page=40';
   }
   async getImage() {
     const response = await axios(

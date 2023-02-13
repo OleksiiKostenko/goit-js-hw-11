@@ -1,3 +1,6 @@
+import SimpleLightbox from 'simplelightbox';
+import 'simplelightbox/dist/simple-lightbox.min.css';
+
 function createMarkupImageList({
   webformatURL,
   largeImageURL,
@@ -9,7 +12,7 @@ function createMarkupImageList({
 }) {
   return `
   <div class="photo-card">
-  <a href="${largeImageURL}"><img src="${webformatURL}" alt="${tags}" loading="lazy" /></a>
+  <a href="${largeImageURL}"><img src="${webformatURL}" alt="${tags}" class="image" loading="lazy" /></a>
   <div class="info">
     <p class="info-item">
       <b>Likes:<span>${likes}</span></b>
@@ -33,6 +36,16 @@ function clearList() {
 
 function updateGalleryList(markup) {
   document.querySelector('.gallery').insertAdjacentHTML('beforeend', markup);
+  gallery.refresh();
 }
+
+
+const gallery = new SimpleLightbox('.photo-card a', {
+  captions: true,
+  captionDelay: 250,
+  captionSelector: 'img',
+  captionType: 'attr',
+  captionsData: 'alt',
+});
 
 export { createMarkupImageList, updateGalleryList, clearList };

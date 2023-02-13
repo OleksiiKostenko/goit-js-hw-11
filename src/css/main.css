@@ -1,3 +1,71 @@
-.hidden{
-display: none;
+body {
+  margin: 0;
+}
+
+.hidden {
+  display: none;
+}
+
+.header {
+  position: fixed;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  top: 0;
+  background-image: linear-gradient(to top, #ffd600 50%, #005bbc 50%);
+  height: 80px;
+  width: 100%;
+}
+.footer {
+  position: fixed;
+  bottom: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-image: linear-gradient(to top, #ffd600 50%, #005bbc 50%);
+  height: 80px;
+  width: 100%;
+}
+
+.gallery {
+  margin-top: 100px;
+  margin-bottom: 100px;
+  gap: 30px;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.image {
+  width: 320px;
+  height: 205px;
+}
+
+button {
+  border: solid grey 1px;
+  border-radius: 10px;
+  height: 40px;
+  width: 200px;
+  background-color: #ffffff;
+  color: red;
+  font-size: 20px;
+  cursor: pointer;
+}
+button:hover,
+button:focus {
+  box-shadow: 12px 12px 5px -5px rgba(34, 60, 80, 0.6);
+}
+input {
+  border: solid grey 1px;
+  background-color: #ffffff;
+  font-size: 20px;
+  border-radius: 10px;
+  height: 35px;
+}
+
+.photo-card {
+  box-shadow: 0px 5px 10px 2px rgba(34, 60, 80, 0.2);
+}
+.info-item {
+  padding-left: 20px;
 }
