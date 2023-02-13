@@ -24,11 +24,19 @@ async function onSubmit(evt) {
   clearList();
 
   imageApi.resetPage();
+  if (!imageApi.searchQuery) {
+    Notify.failure(
+      'Sorry, there are no images matching your search query. Please try again.'
+    );
+    return;
+  }
   fetcImage().finally(() => inputEl.reset());
 }
 
 async function fetcImage() {
   console.log(imageApi);
+  onLoadMoreBtn();
+
   imageApi
     .getImage()
     .then(({ hits }) => {
@@ -57,4 +65,8 @@ function onError() {
   Notify.failure(
     'Sorry, there are no images matching your search query. Please try again.'
   );
+}
+
+function onLoadMoreBtn() {
+  loadMore.classList.remove('hidden');
 }
