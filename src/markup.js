@@ -1,15 +1,15 @@
 function createMarkupImageList({
-      webformatURL,
-      largeImageURL,
-      tags,
-      likes,
-      views,
-      comments,
-      downloads
-    }) {
-  return `<div class="photo-card">
-   <a href="${largeImageURL}"><img src="images/thumbs/thumb1.jpg" alt="" title=""/></a>
-  <img src="${webformatURL}" alt="${tags}" loading="lazy" />
+  webformatURL,
+  largeImageURL,
+  tags,
+  likes,
+  views,
+  comments,
+  downloads,
+}) {
+  return `
+  <div class="photo-card">
+  <a href="${largeImageURL}"><img src="${webformatURL}" alt="${tags}" loading="lazy" /></a>
   <div class="info">
     <p class="info-item">
       <b>Likes:<span>${likes}</span></b>
@@ -25,11 +25,14 @@ function createMarkupImageList({
     </p>
   </div>
 </div>`;
-};
-
-function updateGalleryList(markup) {
-  document.querySelector('.gallery').innerHTML = markup;
 }
 
+function clearList() {
+  document.querySelector('.gallery').innerHTML = '';
+}
 
-export { createMarkupImageList , updateGalleryList };
+function updateGalleryList(markup) {
+  document.querySelector('.gallery').insertAdjacentHTML('beforeend', markup);
+}
+
+export { createMarkupImageList, updateGalleryList, clearList };
