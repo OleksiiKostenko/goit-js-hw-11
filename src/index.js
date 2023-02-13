@@ -1,5 +1,5 @@
 import './css/main.css';
-import { createMarkupImageList, updateGalleryList, clearList } from './markup';
+import { createMarkupImageList, updateGalleryList, clearList, scroll } from './markup';
 import ImageApi from './api.js';
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
 
@@ -12,13 +12,13 @@ const imageApi = new ImageApi();
 
 const inputEl = document.querySelector('#search-form');
 const loadMore = document.querySelector('.load-more');
-const divEl = document.querySelector('.gallery');
+
 
 
 
 inputEl.addEventListener('submit', onSubmit);
 loadMore.addEventListener('click', fetcImage);
-
+loadMore.addEventListener('click', scroll);
 
 
 
@@ -46,20 +46,22 @@ async function onSubmit(evt) {
 
 async function fetcImage() {
   console.log(imageApi);
-
   imageApi
     .getImage()
     .then(({ hits, totalHits }) => {
-      console.log(hits.length)
       
       if (hits.length === 0) {
           Notify.failure(
           'Sorry, there are no images matching your search query. Please try again.'
         ); loadMore.classList.add('hidden');
       } else {
-        Notify.info(`Hooray! We found ${totalHits} images.`);
+        Notify.info(`Hooray! We found ${totalHits-(imageApi.perPage*(imageApi.page-2))} images.`);
+                    if (totalHits < (imageApi.perPage*(imageApi.page-1))) {
+        Notify.failure("We're sorry, but you've reached the end of search results.");
+        loadMore.classList.add('hidden');
+      }
       };
-      
+
       return hits.reduce(
         (markup, hits) => createMarkupImageList(hits) + markup,
         ''

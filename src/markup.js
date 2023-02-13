@@ -37,6 +37,7 @@ function clearList() {
 function updateGalleryList(markup) {
   document.querySelector('.gallery').insertAdjacentHTML('beforeend', markup);
   gallery.refresh();
+  
 }
 
 
@@ -48,4 +49,14 @@ const gallery = new SimpleLightbox('.photo-card a', {
   captionsData: 'alt',
 });
 
-export { createMarkupImageList, updateGalleryList, clearList };
+function scroll() {
+  const { height: cardHeight } = document
+  .querySelector(".gallery")
+  .firstElementChild.getBoundingClientRect();
+
+window.scrollBy({
+  top: cardHeight * 2,
+  behavior: "smooth",
+});}
+
+export { createMarkupImageList, updateGalleryList, clearList, scroll };
