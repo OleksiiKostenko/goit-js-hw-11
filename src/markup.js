@@ -37,11 +37,9 @@ function clearList() {
 function updateGalleryList(markup) {
   document.querySelector('.gallery').insertAdjacentHTML('beforeend', markup);
   gallery.refresh();
-  
 }
 
-
-const gallery = new SimpleLightbox('.photo-card a', {
+const gallery = new SimpleLightbox('.gallery a', {
   captions: true,
   captionDelay: 250,
   captionSelector: 'img',
@@ -51,12 +49,13 @@ const gallery = new SimpleLightbox('.photo-card a', {
 
 function scroll() {
   const { height: cardHeight } = document
-  .querySelector(".gallery")
-  .firstElementChild.getBoundingClientRect();
+    .querySelector('.gallery')
+    .firstElementChild.getBoundingClientRect();
 
-window.scrollBy({
-  top: cardHeight * 2,
-  behavior: "smooth",
-});}
+  window.scrollBy({
+    top: cardHeight * 2,
+    behavior: 'smooth',
+  });
+}
 
 export { createMarkupImageList, updateGalleryList, clearList, scroll };
