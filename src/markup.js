@@ -1,5 +1,8 @@
 import SimpleLightbox from 'simplelightbox';
 import 'simplelightbox/dist/simple-lightbox.min.css';
+import ImageApi from './api.js';
+
+const imageApi = new ImageApi();
 
 function createMarkupImageList({
   webformatURL,

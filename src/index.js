@@ -13,7 +13,6 @@ const imageApi = new ImageApi();
 
 const inputEl = document.querySelector('#search-form');
 const loadMore = document.querySelector('.load-more');
-const downBtm = document.querySelector('.down');
 
 inputEl.addEventListener('submit', onSubmit);
 loadMore.addEventListener('click', fetcImage);
