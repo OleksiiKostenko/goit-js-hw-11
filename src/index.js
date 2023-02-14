@@ -19,25 +19,29 @@ inputEl.addEventListener('submit', onSubmit);
 loadMore.addEventListener('click', fetcImage);
 
 async function onSubmit(evt) {
-  evt.preventDefault();
-  console.log(imageApi);
+  try {
+    evt.preventDefault();
+    console.log(imageApi);
 
-  const form = evt.currentTarget;
-  imageApi.searchQuery = form.elements.searchQuery.value.trim();
+    const form = evt.currentTarget;
+    imageApi.searchQuery = form.elements.searchQuery.value.trim();
 
-  console.log(imageApi.searchQuery);
-  clearList();
-  imageApi.resetPage();
+    console.log(imageApi.searchQuery);
+    clearList();
+    imageApi.resetPage();
 
-  if (!imageApi.searchQuery) {
-    Notify.failure(
-      'Sorry, there are no images matching your search query. Please try again.'
+    if (!imageApi.searchQuery) {
+      Notify.failure(
+        'Sorry, there are no images matching your search query. Please try again.'
+      );
+      return loadMore.classList.add('hidden');
+    }
+    fetcImage().finally(
+      () => inputEl.reset() + loadMore.classList.remove('hidden')
     );
-    return loadMore.classList.add('hidden');
+  } catch (error) {
+    Report.failure('Error', 'Something went wrong here!', 'Okay');
   }
-  fetcImage().finally(
-    () => inputEl.reset() + loadMore.classList.remove('hidden')
-  );
 }
 
 async function fetcImage() {
@@ -74,6 +78,6 @@ async function fetcImage() {
       })
       .then(updateGalleryList);
   } catch (error) {
-    console.log('Error');
+    Report.failure('Error', 'Something went wrong here!', 'Okay');
   }
 }
