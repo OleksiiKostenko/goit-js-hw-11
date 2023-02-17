@@ -1,10 +1,5 @@
 import './css/main.css';
-import {
-  createMarkupImageList,
-  updateGalleryList,
-  clearList,
-  scroll,
-} from './markup';
+import { createMarkupImageList, updateGalleryList, clearList } from './markup';
 import ImageApi from './api.js';
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
 import { Report } from 'notiflix/build/notiflix-report-aio';
@@ -36,7 +31,8 @@ async function onSubmit(evt) {
       return loadMore.classList.add('hidden');
     }
     fetcImage().finally(
-      () => inputEl.reset() + loadMore.classList.remove('hidden')
+      () => inputEl.reset(),
+      loadMore.classList.remove('hidden')
     );
   } catch (error) {
     Report.failure('Error', 'Something went wrong here!', 'Okay');
